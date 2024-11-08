@@ -15,6 +15,7 @@ sample.t.paired <- function(n, ES, options.sample=NULL) {
 # select.function: select a specified number of accumulating data from 
 # the data frame/ matrix that was simulated with sample.function
 
+#' @noRd
 select.t.paired <- function(MAXSAMP, n) {
 	return(MAXSAMP[1:n])
 }

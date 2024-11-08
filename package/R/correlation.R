@@ -30,6 +30,8 @@ getBiCop <- function(n, rho, mar.fun=rnorm, x = NULL, ...) {
 
 # get two variables with a certain (population) correlation
 # ES = correlation
+
+#' @noRd
 sample.correlation <- function(n, ES, options.sample=NULL) {
 	getBiCop(n, ES)
 }
@@ -38,6 +40,7 @@ sample.correlation <- function(n, ES, options.sample=NULL) {
 # select.function: select a specified number of accumulating data from 
 # the data frame/ matrix that was simulated with sample.function
 
+#' @noRd
 select.correlation <- function(MAXSAMP, n) {
 	return(MAXSAMP[1:n, ])
 }

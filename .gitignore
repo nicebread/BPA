@@ -11,3 +11,5 @@ FS_*
 tests
 
 vignette/BFDA_manual_cache
+/doc/
+/Meta/

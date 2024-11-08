@@ -34,8 +34,8 @@ Please note that this package is still a development version; take the results w
 The BFDA package is not on CRAN yet, but you can install the development version from Github:
 
 ```{r eval=FALSE}
-# library(devtools)
-# install_github("nicebread/BFDA", subdir="package")
+library(devtools)
+install_github("nicebread/BFDA", subdir="package")
 ```
 
 
@@ -71,12 +71,12 @@ As we do not know in advance whether H1 or H0 provide a better predictive perfor
 sim.H1 <- BFDA.sim(expected.ES=0.5, type="t.between",
                    prior=list("Cauchy",list(prior.location=0, prior.scale=sqrt(2)/2)),
                    n.min=20, n.max=300, alternative="greater", boundary=Inf, B=1000,
-                   verbose=TRUE, cores=4, stepsize = 10)
+                   verbose=TRUE, cores=1, stepsize = 10)
 
 sim.H0 <- BFDA.sim(expected.ES=0, type="t.between",
                    prior=list("Cauchy", list(prior.location=0, prior.scale=sqrt(2)/2)),
                    n.min=20, n.max=300, alternative="greater", boundary=Inf, B=1000,
-                   verbose=TRUE, cores=4, stepsize = 10)
+                   verbose=TRUE, cores=1, stepsize = 10)
 ```
 
 Let's go through the parameters of the simulation function:
@@ -225,11 +225,11 @@ The BFDA uses informed t-test functions by [Gronau, Ly, & Wagenmakers (2019)](ht
 s1 <- BFDA.sim(expected.ES=0.4,
                prior=list("t", list(prior.location=0, prior.scale=sqrt(2)/2, prior.df=1)),
                n.min=50, stepsize=5, n.max=300, type="t.paired", design="sequential",
-               alternative="greater", B=1000, cores=4, verbose=FALSE)
+               alternative="greater", B=1000, cores=1, verbose=FALSE)
 s0 <- BFDA.sim(expected.ES=0,
                prior=list("t", list(prior.location=0, prior.scale=sqrt(2)/2, prior.df=1)),
                n.min=50, stepsize=5, n.max=300, type="t.paired", design="sequential",
-               alternative="greater", B=1000, cores=4, verbose=FALSE)
+               alternative="greater", B=1000, cores=1, verbose=FALSE)
 
 # if no n.min and n.max is provided in the `BFDA.analyze` function,
 # the values from the simulation are taken
@@ -299,10 +299,10 @@ Here is a complete walkthrough for a one-sided (positive directional) correlatio
 # do a sequential design analysis
 c1 <- BFDA.sim(expected.ES=0.21, prior=list("stretchedbeta",list(prior.kappa=2)),
                n.min=50, stepsize=10, n.max=300, B=1000, type="correlation",
-               design="sequential", alternative="greater", cores=4, verbose=FALSE)
+               design="sequential", alternative="greater", cores=1, verbose=FALSE)
 c0 <- BFDA.sim(expected.ES=0, prior=list("stretchedbeta", list(prior.kappa=2)),
                n.min=50, stepsize=10, n.max=300, B=1000, type="correlation",
-               design="sequential", alternative="greater", cores=4, verbose=FALSE)
+               design="sequential", alternative="greater", cores=1, verbose=FALSE)
 
 # if no n.min and n.max is provided in the `BFDA.analyze` function,
 # the values from the simulation are taken
@@ -336,11 +336,11 @@ $Absolute\,Risk = p2-p1$
 # do a sequential design analysis
 ab1 <- BFDA.sim(expected.ES=2, prior=list("normal", list(prior.mean=0.5, prior.variance = 1)),
                 n.min=50, stepsize=10, n.max=300, B=1000, type="abtest",
-                design="sequential", alternative="two.sided", cores=4, verbose=FALSE,
+                design="sequential", alternative="two.sided", cores=1, verbose=FALSE,
                 options.sample = list(effecttype = "OR"))
 ab0 <- BFDA.sim(expected.ES=0, prior=list("normal", list(prior.mean=0.5, prior.variance = 1)),
                 n.min=50, stepsize=10, n.max=300, B=1000, type="abtest",
-                design="sequential", alternative="two.sided", cores=4, verbose=FALSE,
+                design="sequential", alternative="two.sided", cores=1, verbose=FALSE,
                 options.sample = list(effecttype = "OR"))
 
 # if no n.min and n.max is provided in the `BFDA.analyze` function,

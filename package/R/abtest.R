@@ -79,6 +79,7 @@ sample.abtest <- function(n, ES, options.sample=NULL) {
 # select.function: select a specified number of accumulating data from 
 # the data frame/ matrix that was simulated with sample.function
 
+#' @noRd
 select.abtest <- function(MAXSAMP, n) {
   return(MAXSAMP[1:n, ])
 }
